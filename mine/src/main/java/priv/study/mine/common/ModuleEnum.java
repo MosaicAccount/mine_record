@@ -23,7 +23,4 @@ public enum ModuleEnum {
         this.module = message;
     }
 
-    public String getModule() {
-        return module;
-    }
 }
