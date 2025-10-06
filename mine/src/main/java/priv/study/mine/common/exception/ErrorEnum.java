@@ -1,30 +1,26 @@
 package priv.study.mine.common.exception;
 
-import lombok.Data;
+import lombok.Getter;
 
 /**
  * 业务异常枚举类
  *
  * @author JLian
- * @version 0.0.1
- * @since 0.0.1
+* @date 2025年10月04日
  */
+@Getter
 public enum ErrorEnum {
+    DATA_NOT_EXIST("数据不存在"),
+    SAVE_FAIL("保存失败"),
+    DELETE_FAIL("删除失败"),
+    UPDATE_FAIL("更新失败"),
     ;
 
-
-    private String message;
+    private final String message;
 
 
     ErrorEnum(String message) {
         this.message = message;
     }
 
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 }

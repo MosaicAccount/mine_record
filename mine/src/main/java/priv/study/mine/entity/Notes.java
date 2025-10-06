@@ -1,60 +1,47 @@
 package priv.study.mine.entity;
 
-import jakarta.persistence.*;
-import lombok.*;
-import org.hibernate.annotations.Comment;
+import java.io.Serial;
 
-import java.time.LocalDateTime;
-import java.util.List;
-
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import priv.study.mine.common.entity.BaseEntity;
 /**
  * 笔记信息
  *
  * @author JLian
- * @version 0.0.1
- * @since 0.0.1
+* @date 2025年10月04日
  */
 @Entity
 @Table(name = "tb_notes")
-@Comment("笔记信息")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Notes {
+@EqualsAndHashCode(callSuper = true)
+public class Notes extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name = "title", length = 128, nullable = false)
-    @Comment("笔记标题")
+    @Serial
+    private static final long serialVersionUID = 7604175790793547990L;
+    
+    @Column(name = "title")
     private String title;
 
-    @Column(name = "notes_type", nullable = false, columnDefinition = "CHAR(1) CHECK(notes_type IN ('1', '2'))")
-    @Comment("笔记类型（1-笔记，2-小记）")
+    @Column(name = "notes_type")
     private String notesType;
 
     @Column(name = "description")
-    @Comment("笔记描述")
     private String desc;
 
     @Column(name = "content", columnDefinition = "TEXT")
-    @Comment("小记内容")
     private String content;
 
     @Column(name = "attachments")
-    @Comment("附件")
     private String attachments;
-
-    @Column(name = "create_time", nullable = false, updatable = false)
-    @Comment("创建时间")
-    private LocalDateTime createTime;
-
-    @Column(name = "update_time", nullable = false)
-    @Comment("更新时间")
-    private LocalDateTime updateTime;
-
-
 
 }

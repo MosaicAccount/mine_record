@@ -13,31 +13,25 @@ import lombok.NoArgsConstructor;
 import priv.study.mine.common.entity.BaseEntity;
 
 /**
- * 影视信息
+ * 书籍信息
  *
  * @author JLian
 * @date 2025年10月04日
  */
 @Entity
-@Table(name = "tb_audio_visual")
+@Table(name = "tb_bookshelf")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class AudioVisual extends BaseEntity {
+public class BookShelf extends BaseEntity {
 
-    @Column(name = "av_name")
-    private String avName;
+    @Column(name = "book_name")
+    private String bookName;
 
-    @Column(name = "director")
-    private String director;
-
-    @Column(name = "release_date")
-    private LocalDate release_date;
-
-    @Column(name = "type")
-    private String type;
+    @Column(name = "author")
+    private String author;
 
     @Column(name = "status")
     private String status;
@@ -45,16 +39,22 @@ public class AudioVisual extends BaseEntity {
     @Column(name = "rating")
     private Double rating;
 
-    @Column(name = "recommend")
+    @Column(name = "cover_image")
+    private String cover_image;
+
+    @Column(name = "recommend", scale = 1)
     private Double recommend;
 
+    @Column(name = "start_date")
+    private LocalDate startDate;
+
+    @Column(name = "end_date")
+    private LocalDate endDate;
+
     @Column(name = "watch_times")
-    private Integer watch_times;
+    private Integer watchTimes;
 
     @Column(name = "notes_id")
     private Long notesId;
-
-    @Column(name = "cover_image")
-    private String cover_image;
 
 }

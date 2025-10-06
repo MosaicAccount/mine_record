@@ -1,4 +1,4 @@
-package priv.study.mine.common;
+package priv.study.mine.common.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,7 @@ import lombok.NoArgsConstructor;
  * 返回结果
  *
  * @author JLian
- * @version 0.0.1
- * @since 0.0.1
+* @date 2025年10月04日
  */
 @Data
 @Builder
