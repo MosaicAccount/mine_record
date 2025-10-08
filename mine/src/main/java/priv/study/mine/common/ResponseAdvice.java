@@ -1,5 +1,6 @@
 package priv.study.mine.common;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -7,6 +8,8 @@ import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.extern.slf4j.Slf4j;
 import priv.study.mine.common.entity.R;
@@ -20,6 +23,9 @@ import priv.study.mine.common.entity.R;
 @RestControllerAdvice
 @Slf4j
 public class ResponseAdvice implements ResponseBodyAdvice<Object> {
+
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @Override
     public boolean supports(MethodParameter returnType, Class<? extends HttpMessageConverter<?>> converterType) {
@@ -38,6 +44,15 @@ public class ResponseAdvice implements ResponseBodyAdvice<Object> {
 
         if (returnType.getParameterType().equals(Void.class)) {
             return R.success();
+        }
+
+        if (returnType.getGenericParameterType().equals(String.class)) {
+            try {
+                return objectMapper.writeValueAsString(R.success(body));
+            } catch (Exception e) {
+                log.error("返回结果转换异常", e);
+                return R.error("返回结果转换异常");
+            }
         }
 
         return R.success(body);
